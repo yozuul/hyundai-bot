@@ -104,6 +104,7 @@ export class MainMenu {
       if(this.user[chat_id].currentMenu = 'addNewPhone') {
          await UserController.deletePhone([chat_id, phone_num])
          await this.bot.deleteMessage(chat_id, this.user[chat_id].menu_id)
+         this.started(chat_id)
       }
    }
 
@@ -119,6 +120,10 @@ export class MainMenu {
             return
          }
       }
+   }
+
+   async updateConfig(chat_id, text) {
+      await this.bot.sendMessage(chat_id, text)
    }
 
    async started(chat_id) {
@@ -279,20 +284,6 @@ export class MainMenu {
       await this.started(chat_id)
       return
    }
-   async userNotExist(chat_id) {
-      await this.bot.sendMessage(chat_id, 'Вы не имеете доступа к боту', {
-         reply_markup: {
-            keyboard: ReplyKeyboard.startedUnauthorize
-         }
-      })
-   }
-   checkUser(chat_id) {
-      if(this.user) {
-         return this.user[chat_id]
-      } else {
-         return false
-      }
-   }
    async reopenMenu(chat_id, menu_id) {
       if (chat_id && this.menu_id) {
          await this.bot.editMessageText('[Меню отключено поскольку вы открыли это меню ниже]', {
@@ -332,5 +323,26 @@ export class MainMenu {
          }
       }
       return equipmentName
+   }
+   async userNotExist(chat_id) {
+      await this.bot.sendMessage(chat_id, 'Вы не имеете доступа к боту', {
+         reply_markup: {
+            keyboard: ReplyKeyboard.startedUnauthorize
+         }
+      })
+   }
+   checkUser(chat_id) {
+      if(this.user) {
+         return this.user[chat_id]
+      } else {
+         return false
+      }
+   }
+   async unAuthorizedUser(chat_id) {
+      await this.bot.sendMessage(chat_id, 'Для доступа к боту, нажмите на кнопку ниже:', {
+         reply_markup: {
+            keyboard: ReplyKeyboard.startedUnauthorize
+         }
+      })
    }
 }

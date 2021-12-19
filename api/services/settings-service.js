@@ -1,5 +1,4 @@
 import { SettingsModel } from '../models'
-import { Op } from '../utils/database'
 
 export class SettingsService {
    // ПОДПИСКИ

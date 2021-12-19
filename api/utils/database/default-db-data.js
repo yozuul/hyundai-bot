@@ -750,11 +750,41 @@ const defaultUser = [
       phone_num: '+79272996630'
    },
    {
-      name: 'DenVer',
+      name: 'Артур Д',
+      role_id: 1,
+      tg_id: 5076836045,
+      phone_num: '+79265606830'
+   },
+   {
+      name: 'Maxim',
       role_id: 2,
-      tg_id: 1308608098,
-      phone_num: '+79015009458'
-   }
+      tg_id: 1024964948,
+      phone_num: '+79853354575'
+   },
+   {
+      name: 'Леся',
+      role_id: 2,
+      tg_id: 568424710,
+      phone_num: '+79855214847'
+   },
+   {
+      name: 'Рузо Кар',
+      role_id: 2,
+      tg_id: 5025348677,
+      phone_num: '+79171337439'
+   },
+   {
+      name: 'User',
+      role_id: 2,
+      tg_id: 5063403370,
+      phone_num: '+79265604518'
+   },
+   {
+      name: 'User',
+      role_id: 2,
+      tg_id: 5049109986,
+      phone_num: '+79265605823'
+   },
 ]
 
 const defaultUserSubscribe = [

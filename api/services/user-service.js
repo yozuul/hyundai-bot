@@ -1,5 +1,4 @@
 import { UserModel, UserSubscribeModel } from '../models'
-import { Op } from '../utils/database'
 
 export class UserService {
    // ПОДПИСКИ

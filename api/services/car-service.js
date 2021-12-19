@@ -1,5 +1,4 @@
 import { CarModel, CarNameModel, EngineTypeModel, EquipmentNameModel } from '../models'
-import { Op } from '../utils/database'
 
 export class CarService {
     static async getAllCars() {

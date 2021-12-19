@@ -3,6 +3,7 @@ import { darkGray, red, green } from 'ansicolor'
 
 import { UserController } from '../controllers'
 import { MainMenu } from './main-menu'
+import { createUserProfile, deleteUserProfile, saveFile } from '../utils'
 
 const bot = new TelegramApi(process.env.BOT_TOKEN, { polling: true })
 const menu = new MainMenu(bot)
@@ -12,6 +13,10 @@ export const botStart = () => {
    bot.on('message', async (msg) => {
       const text = msg.text || 'default'
       const chat_id = msg.chat.id
+      if(msg.document) {
+         const sendMsg = (chat_id, returnText) => menu.updateConfig(chat_id, returnText)
+         await saveFile(chat_id, msg.document, sendMsg)
+      }
       // Проверка авторизации
       const checkAuth = await UserController.findById([chat_id])
       if(!checkAuth.data) {
@@ -41,6 +46,11 @@ export const botStart = () => {
       //    const loginCode = await menu.isLoginCode(chat_id, parseInt(text))
       //    parser.sendLoginCode(chat_id, loginCode)
       // }
+      console.log(('message:').darkGray, (text).green)
+   })
+
+   bot.on('file', async (msg) => {
+      console.log(msg)
       console.log(('message:').darkGray, (text).green)
    })
 
@@ -89,7 +99,12 @@ export const botStart = () => {
       }
       // Вспомогательные кнопки
       if (callback.split('+7')[1]) {
-         menu.deletePhone(chat_id, callback)
+         try {
+            await deleteUserProfile(callback)
+            menu.deletePhone(chat_id, callback)
+         } catch (error) {
+            console.log(error)
+         }
       }
       if (callback === 'reload_menu') {
          menu.started(chat_id)
@@ -128,7 +143,8 @@ export const botStart = () => {
       const isUserExist = await UserController.findByPhone([contact.phone_number])
       if(isUserExist.data) {
          await UserController.confirmPhone(userContact)
-         await menu.restartBot()
+         await createUserProfile(contact.phone_number)
+         await menu.started()
       } else {
          await menu.userNotExist(chat_id)
       }

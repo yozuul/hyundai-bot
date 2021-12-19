@@ -1,5 +1,7 @@
-import { postgres, Op } from './db-connect'
+import { postgres } from './db-connect'
+
 import { darkGray, red } from 'ansicolor'
+
 import {
    defaultUser,
    defaultUserSubscribe,
@@ -24,10 +26,8 @@ const pgSync = async (models) => {
 
       await postgres.sync()
       await (async () => {
-         const existUser = await UserModel.findOne({
-            where: { tg_id: 1884297416 }
-         })
-         if(!existUser) {
+         const existUser = await UserModel.findAll({ row: true })
+         if(existUser.length === 0) {
             UserModel.bulkCreate(defaultUser)
          }
          const existCars = await CarModel.findAll({ row: true })
@@ -60,8 +60,5 @@ const pgSync = async (models) => {
          console.log(('Ошибка синхронизации таблиц').red)
    }
 }
-
-
-
 
 export default pgSync

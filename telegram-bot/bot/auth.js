@@ -19,14 +19,6 @@ export class Authorize {
          }
       }
    }
-
-   async unAuthorizedUser(chat_id) {
-      await this.bot.sendMessage(chat_id, 'Для доступа к боту, нажмите на кнопку ниже:', {
-         reply_markup: {
-            keyboard: ReplyKeyboard.startedUnauthorize
-         }
-      })
-   }
 }
 
 export { Authorize }

@@ -1,6 +1,6 @@
 import { postgres, DataTypes } from '../utils'
 
-const { STRING, TEXT, INTEGER, BIGINT, BOOLEAN, DATE } = DataTypes
+const { STRING, INTEGER, BIGINT } = DataTypes
 
 export default postgres.define('users', {
     name: {
