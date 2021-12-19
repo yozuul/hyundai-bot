@@ -31,7 +31,6 @@ class Messanger {
             // '--start-maximized',
             '--disable-notifications',
             '--window-size=1920,1020',
-            // '--window-size=1600,1020',
             '--no-sandbox',
          ]
       })
