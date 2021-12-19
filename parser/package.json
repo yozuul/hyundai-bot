@@ -1,0 +1,19 @@
+{
+  "name": "parser",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "dev": "set USER_PHONE=+79015009458&& nodemon --config nodemon.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ansicolor": "^1.1.95",
+    "axios": "^0.24.0",
+    "fs-extra": "^10.0.0",
+    "puppeteer": "^13.0.0"
+  }
+}
