@@ -25,13 +25,13 @@ const userProfiles = getDirectories('./parser/users')
 
 let count = 0
 for (let user of userProfiles) {
-   const cronjob = `*/1${count} * * * *`
-   console.log(cronjob)
+   let cronjob = `*/1${count} * * * *`
    appData.push({
       name: user,
       cwd: './parser',
       script: 'app.js',
       node_args: '--es-module-specifier-resolution=node',
+      exp_backoff_restart_delay: parseInt(pause),
       env: {
          USER_PHONE: user,
       },

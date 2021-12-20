@@ -24,7 +24,7 @@ class Messanger {
    async openWebVersion(phone_num) {
       const url = 'https://web.telegram.org/z'
       const browser = await puppeteer.launch({
-         headless: true,
+         // headless: true,
          devtools: true,
          defaultViewport: null,
          args: [
