@@ -1,4 +1,4 @@
-import pm2 from'pm2'
+import pm2 from 'pm2'
 
 export const pmStart = (userPhone) => {
    const profileTemplate = {
